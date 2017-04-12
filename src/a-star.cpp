@@ -25,14 +25,17 @@ std::list<Node> aStar
     const Cost graph[N][N],
     Cost (*heuristic)(Node current, Node goal))
 {
-    // Set of discovered but unevaluated nodes starting from the start node
+    // Priority queue discovered but unevaluated nodes starting from the start
+    // The priority is the heuristic + cost, prioritizing search of the next
+    // most efficient neighbour
     typedef std::pair<Cost, size_t> El;
     std::priority_queue<El, std::vector<El>, std::greater<El>> frontier;
     frontier.emplace(0, index_of<Node, N>(START, vertex));
-    // Set of evaluated nodes
+    // Set of evaluated nodes to prevent unecessary duplicate exploration
     std::deque<size_t> explored;
 
-    // The most efficient neighbor for each vertex
+    // The most efficient neighbor for each vertex so we have a way to
+    // reconstruct the most efficient path by "unwinding" parents
     std::unordered_map<size_t, size_t> parent;
     // Cost value of each vertex
     std::unordered_map<size_t, Cost> aggregateCost;
@@ -42,15 +45,19 @@ std::list<Node> aStar
     // Continue the earch for optimal path as long as open nodes exist
     while (!frontier.empty()) {
         current = frontier.top().second;
-        // Break early algorithm arrived at the goal
         if (vertex[current] == GOAL) {break;}
 
-        // Mark current node as explored
         explored.push_front(frontier.top().second);
         frontier.pop();
 
+        // Search neighbours and evaluate the cost, using the cost + heuristic
+        // to insert the values in a priority queue so the most efficient
+        // neighbours are explored first to find the optimal path.
         for (size_t n = 0; n < N; n++) {
+            // Skip if the adjacency matrix indicates no edge exists
             if (graph[current][n] == 0) {continue;}
+            // Determine the cost accrued traversing the graph up to the
+            // discovered neighbour
             Cost cost = aggregateCost[current] + graph[current][n];
             if (!contains(explored, n) || cost < aggregateCost[n]) {
                 parent[n] = current;
@@ -60,6 +67,7 @@ std::list<Node> aStar
         }
     }
 
+    // Unwind the most efficient parents for each node to construct optimal path
     std::list<Node> path;
     path.push_front(vertex[current]);
      while (vertex[current] != START) {
