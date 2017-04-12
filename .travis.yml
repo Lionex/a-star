@@ -1,0 +1,22 @@
+dist: trusty
+sudo: require
+languagie: cpp
+compiler: gcc
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-6
+      - g++-6
+      - cmake
+install: true
+script:
+    - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+    - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+    - gcc -v && g++ -v && cmake --version
+    - mkdir target
+    - g++ -std=c++11 test/tests.cpp -o target/test.o -O3
+    - ./target/test.o
+    - g++ -std=c++11 examples/airports.cpp -o target/airport.o -O3
+    - ./target/airport.o

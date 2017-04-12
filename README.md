@@ -1,5 +1,7 @@
 # A* graph search
 
+[![Build Status](https://travis-ci.org/Lionex/a-star.svg?branch=master)](https://travis-ci.org/Lionex/a-star)
+
 A\* graph search finds the optimal path from some start node in a weighted digraph to an end node provided such a path exists.  A\* uses a priority queue to ensure the algorithm first searches elements which minimize the traversal cost to the curent node and the value of a heurisic which estimates the future cost from the current node to the destination.
 
 A\* appears most commonly in path-finding applications to search for a path through a navigation mesh or coordinate grid passed obstacles on the grid which must be passed.  However, A\* also works just as well on any weighted directed graph where it's possible to determine the cost to the current node and the approximate cost from the current node to the destination.
