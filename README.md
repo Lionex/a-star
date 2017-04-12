@@ -42,3 +42,9 @@ int main() {
 }
 
 ```
+
+## References
+
+1. [Introduction to A\*](http://www.redblobgames.com/pathfinding/a-star/introduction.html)
+2. [A\* implementation](http://www.redblobgames.com/pathfinding/a-star/implementation.html)
+3. [Data structure comparison](http://theory.stanford.edu/~amitp/GameProgramming/ImplementationNotes.html)
