@@ -3,10 +3,26 @@
 #include <list>
 #include "../src/a-star.hpp"
 
-enum Airport {
-    LAX=0, MIA=1, ATL=2, DEN=3, JFK=4
-};
+/*
 
+# Airport Example:
+
+This exmaple hopes to determine the cheapest route from one airport to another
+using the flight time as a heuristic.
+
+Finding flight routes are a good case for adjacency matrix digraphs because they
+tend to be dense (it's possible to fly from nearly any airport to any other
+airport), making them memory efficient.
+
+A-star finds the cheapest route by exploring all of the neighbour airports to
+find the airport with the lowest flight time to the destination and lowset Cost
+from the start until it finds the optimal path.
+
+ */
+
+enum Airport { LAX, MIA, ATL, DEN, JFK };
+
+// Define stream insertion for pretty printing
 std::ostream& operator<<(std::ostream& os, const Airport& a) {
     std::string out;
     switch (a) {
@@ -21,7 +37,7 @@ std::ostream& operator<<(std::ostream& os, const Airport& a) {
 
 using Dollars = double;
 
-// Flight time in minutes between airports, forms a basis for the heuristic
+// Flight time in minutes between airports to use as heuristic for A*
 inline Dollars flight_time(Airport current, Airport destination) {
     Dollars times [5][5] = {
         //LAX   MIA   ATL   DEN   JFK
@@ -37,8 +53,7 @@ inline Dollars flight_time(Airport current, Airport destination) {
 
 int main() {
 
-    // Define vector of vertex names which correspond to matrix row and column
-    // labels
+    // Define vertex names which correspond to matrix row and column    // labels
     const Airport names[] = {LAX, MIA, ATL, DEN, JFK};
 
     // Define adjacency matrix where flights from each row airport to each
@@ -52,11 +67,9 @@ int main() {
         {275, 230, 198, 212,   0}  // JFK
     };
 
-    Airport start = LAX;
-    Airport destination = MIA;
-    std::list<Airport> route = aStar<Airport, Dollars>(start, destination, names, routes, flight_time);
+    std::list<Airport> route = aStar<Airport, Dollars>(LAX, MIA, names, routes, flight_time);
 
-    std::cout << "Cheapest route";
+    std::cout << "Cheapest route, expect LAX -> ATL -> MIA,\nfound ";
     for (auto stop : route) {
         std::cout << " -> " << stop;
     }
