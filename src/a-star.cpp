@@ -2,6 +2,7 @@
 
 #include "a-star.hpp"
 
+// Find an item by value in a Deque and return true if it is found, utility
 template<typename T>
 bool contains(std::deque<T> queue, T node) {
     for (auto item : queue) {
@@ -11,6 +12,8 @@ bool contains(std::deque<T> queue, T node) {
     }
 }
 
+// Assuming an array contains a given value, find the index of it's first
+// appearance
 template<typename Node, size_t N>
 size_t index_of(Node node, const Node nodes[N]) {
     for (size_t n = 0; n < N; n++) {
@@ -25,9 +28,9 @@ std::list<Node> aStar
     const Cost graph[N][N],
     Cost (*heuristic)(Node current, Node goal))
 {
-    // Priority queue discovered but unevaluated nodes starting from the start
-    // The priority is the heuristic + cost, prioritizing search of the next
-    // most efficient neighbour
+    // Priority queue: discovered but unevaluated nodes starting from the start
+    // The priority is the heuristic + cost thus prioritizing the most efficient
+    // neighbour by placing it at the top of the queue
     typedef std::pair<Cost, size_t> El;
     std::priority_queue<El, std::vector<El>, std::greater<El>> frontier;
     frontier.emplace(0, index_of<Node, N>(START, vertex));
