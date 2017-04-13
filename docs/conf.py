@@ -183,3 +183,12 @@ source_parsers = {
 }
 
 source_suffix = ['.rst', '.md']
+
+
+html_context = {
+    "display_github": True, # Integrate GitHub
+    "github_user": "Lionex", # Username
+    "github_repo": "a-star", # Repo name
+    "github_version": "master", # Version
+    "conf_py_path": "/docs/", # Path in the checkout to the docs root
+}
