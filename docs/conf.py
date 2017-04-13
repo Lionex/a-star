@@ -30,10 +30,11 @@ from recommonmark.parser import CommonMarkParser
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc',
+extensions = ['rst2pdf.pdfbuilder',
+    'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
-    'sphinx.ext.imgmath',
     'sphinx.ext.githubpages']
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']
@@ -192,3 +193,7 @@ html_context = {
     "github_version": "master", # Version
     "conf_py_path": "/docs/", # Path in the checkout to the docs root
 }
+
+
+# -- Options for PDF Output -----------------------------------------------
+pdf_documents = [('index', u'a-star', u'A Star Graph Search', u'Gwen Lofman')]

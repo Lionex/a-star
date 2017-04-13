@@ -63,7 +63,7 @@ std::list<Node> aStar(
 
 ## Building documentation
 
-Ensure that `sphynx` and `recommonmark` have been installed, then enter the `docs\` directory and run `make [target]`; for a list of targets just run `make`.
+Ensure that `sphynx` and `recommonmark` have been installed, then enter the `docs\` directory and run `make pdf` to build a PDF of the documentation; for a list of targets just run `make`.
 
 To install `sphynx` and `recommonmark` run:
 
