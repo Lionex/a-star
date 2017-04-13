@@ -43,8 +43,31 @@ int main() {
 
 ```
 
+Type signature of `aStar` search function:
+
+```cpp
+template<typename Node, typename Cost, size_t N>
+std::list<Node> aStar(
+    const Node &amp;START,
+    const Node &amp;GOAL,
+    const Node vertex[N],
+    const Cost graph[N][N],
+    Cost (*heuristic)(Node current,Node goal));
+```
+
 ## References
 
-1. [Introduction to A\*](http://www.redblobgames.com/pathfinding/a-star/introduction.html)
-2. [A\* implementation](http://www.redblobgames.com/pathfinding/a-star/implementation.html)
-3. [Data structure comparison](http://theory.stanford.edu/~amitp/GameProgramming/ImplementationNotes.html)
+1. [Introduction to A\*](http://www.redblobgames.com/pathfinding/a-star/introduction.html), includes many useful interactive diagrams and visualizations building from depth-first-search to A\*
+2. [A\* implementation](http://www.redblobgames.com/pathfinding/a-star/implementation.html) shows implementation samples in a host of languages
+3. [Data structure comparison](http://theory.stanford.edu/~amitp/GameProgramming/ImplementationNotes.html) contains an in-depth discussion of various different data structures that can be used to implement A\*, comparing their speed in terms of adding and removing elements, accessing elements, and finding elements.
+
+## Building documentation
+
+Ensure that `sphynx` and `recommonmark` have been installed, then enter the `docs\` directory and run `make [target]`; for a list of targets just run `make`.
+
+To install `sphynx` and `recommonmark` run:
+
+```
+$ pip install sphinx sphinx-autobuild
+$ pip install recommonmark
+```
