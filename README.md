@@ -48,8 +48,8 @@ Type signature of `aStar` search function:
 ```cpp
 template<typename Node, typename Cost, size_t N>
 std::list<Node> aStar(
-    const Node &amp;START,
-    const Node &amp;GOAL,
+    const Node \&START,
+    const Node \&GOAL,
     const Node vertex[N],
     const Cost graph[N][N],
     Cost (*heuristic)(Node current,Node goal));

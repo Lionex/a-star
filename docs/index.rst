@@ -64,9 +64,9 @@ References
 Building documentation
 ======================
 
-Ensure that ``sphynx`` and ``recommonmark`` have been installed, then enter the ``docs\`` directory and run ``make [target]``; for a list of targets just run ``make``.
+Ensure that ``sphinx`` and ``recommonmark`` have been installed, then enter the ``docs\`` directory and run ``make [target]``; for a list of targets just run ``make``.
 
-To install `sphynx` and `recommonmark` run:::
+To install `sphinx` and `recommonmark` run:::
 
     $ pip install sphinx sphinx-autobuild
     $ pip install recommonmark
